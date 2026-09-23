@@ -9,16 +9,39 @@ void mostrarArreglo(int numeros[], int n) {
 }
 
 void insertionSort(int numeros[], int n) {
+    int comparaciones = 0;
+    int desplazamientos = 0;
+    int inserciones = 0;
+
     for (int i = 1; i < n; i++) {
         int key = numeros[i];
         int j = i - 1;
         
-        while (j >= 0 && numeros[j] > key) {
-            numeros[j + 1] = numeros[j];
-            j = j - 1;
+        cout << "\nInsertando: " << key << endl;
+
+        while (j >= 0) {
+            comparaciones++;
+            if (numeros[j] > key) {
+                numeros[j + 1] = numeros[j];
+                desplazamientos++;
+                j = j - 1;
+            } else {
+                break; 
+            }
         }
+        
         numeros[j + 1] = key;
+        inserciones++;
+        
+        mostrarArreglo(numeros, n);
     }
+
+    cout << "\n===============================" << endl;
+    cout << "          ESTADISTICAS         " << endl;
+    cout << "===============================" << endl;
+    cout << "Comparaciones: " << comparaciones << endl;
+    cout << "Desplazamientos: " << desplazamientos << endl;
+    cout << "Inserciones: " << inserciones << endl;
 }
 
 int main() {
